@@ -1,1 +1,1 @@
-ExfilLook is a script that'll enumerate data from a compromised Windows system and exfiltrates that data using Outlook.
+ExfilLook is a script can be used to exfiltrate data from a Windows machine using Microsoft Outlook.
