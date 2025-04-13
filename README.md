@@ -9,4 +9,4 @@ __         __   ____   _        ___      __     ____     ______      _____      
 |__/       )_/  /__\  \_/    \____(      )_/      )_/      )___)    (_____)    (___/   |_)  \_____v.2.0_________________________________________________________________|
 ```
 
-ExfilLook (Exfiltrate through Outlook) is a PowerShell-based payload designed for red team operations that enables remote command execution on a compromised Windows system, captures the output into a text file, and exfiltrates the file via Outlook Mail to a designated temporary email address.
+**Exfiltrate through Outlook** is a PowerShell-based payload designed for red team operations that enables remote command execution on a compromised Windows system, captures the output into a text file, and exfiltrates the file via Outlook Mail to a designated temporary email address.
