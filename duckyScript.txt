@@ -9,17 +9,10 @@ REM - |__/       )_/  /__\  \_/    \____(      )_/      )_/      )___)    (_____
 REM -
 REM -------------------------- 
 
-REM - TOOL INFORMATION
-REM - [*] ExfilLook is a BadUSB exploit written in DuckyScript that enumerates data from a compromised Windows system and exfiltrates that data using Outlook.
-REM -------------------------- 
-
 REM - TOOL REQUIREMENTS
 REM - [*] Requires Outlook to be enabled on the target Windows machine.
 REM - [*] Requires an internet connection on the target Windows machine.
 REM - [*] Requires you to fill in the blanks in this script.
-
-REM - DISCLAIMERS
-REM - [*] This tool is made for educational purposes only and should only be tested on machines and systems that you have permission to test or personally own.
 REM -------------------------- 
 
 REM - Step 1: Add an Outlook account (If one already exists then the payload will just walk through the commands without changing anything)
