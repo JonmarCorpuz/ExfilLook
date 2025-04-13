@@ -17,4 +17,4 @@ __         __   ____   _        ___      __     ____     ______      _____      
 
 # Contributors 
 
-| ![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)[Jonmar Corpuz](www.linkedin.com/in/jonmarcorpuz) |
+| ![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white) [Jonmar Corpuz](www.linkedin.com/in/jonmarcorpuz) |
