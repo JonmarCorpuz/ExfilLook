@@ -14,3 +14,7 @@ __         __   ____   _        ___      __     ____     ______      _____      
 # Payload Formats
 
 | [Ducky Script](https://github.com/JonmarCorpuz/ExfilLook/blob/main/ExfilLook.txt) | [PowerShell](https://github.com/JonmarCorpuz/ExfilLook/blob/main/ExfilLook.ps1) |
+
+# Contributors 
+
+| [Jonmar Corpuz](www.linkedin.com/in/jonmarcorpuz) |
