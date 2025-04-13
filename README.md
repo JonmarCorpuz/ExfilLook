@@ -11,7 +11,7 @@ __         __   ____   _        ___      __     ____     ______      _____      
 
 **Exfiltrate through Outlook** is a customizable payload designed for red team operations that enables remote command execution on a compromised Windows system, captures the output into a text file, and exfiltrates the file via Outlook Mail to a designated temporary email address.
 
-DISCLAIMER: This tool is made for educational purposes only and should only be tested on machines that you have permission to target.  
+`DISCLAIMER: This tool is made for educational purposes only and should only be tested on machines that you have permission to target.`
 
 # Payload Formats
 
