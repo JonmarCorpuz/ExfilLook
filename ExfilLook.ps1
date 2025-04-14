@@ -9,7 +9,7 @@ __         __   ____   _        ___      __     ____     ______      _____      
 "@
 
 # ---------------------------------------------------------------------------------- #
-# Step 1: Manually fill out the required information (OPTIONAL)                      #
+# Step 1: Manually fill out the required information (REQUIRED)                      #
 # ---------------------------------------------------------------------------------- #
 
 # The email to send the loot to
